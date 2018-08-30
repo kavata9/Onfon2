@@ -13,34 +13,38 @@ public class App {
 
     public static void main(String[] args_)
     {
-         String username = "ONFON";
-         String apiKey   = "4ceddd1003131a62b84796945561f28657b3c7b9ef7d8ce53ca9a2a4232293e4";
-    
-         String recipients = "+254724971796";
-    
-         String message = "We are lumberjacks. We code all day and sleep all night";
-         
-         // Specify your AfricasTalking shortCode or sender id
-         String from = "5001";
-    
-         AfricasTalkingGateway gateway  = new AfricasTalkingGateway(username, apiKey);
-         
+        // Specify your login credentials
+        String username = "ONFON";
+        String apiKey   = "605865e1df37fe49954cc59748091f0e38b19a6c56dc49a1ef473c7441975cd9";
+        // Specify the numbers that you want to send to in a comma-separated list
+        // Please ensure you include the country code (+254 for Kenya in this case)
+        String recipients = "+254724971796";
+        // And of course we want our recipients to know what we really do
+        String message = "Welcome to our dating service sms the word MPENZI to 5001";
+        // Create a new instance of our awesome gateway class
+        AfricasTalkingGateway gateway  = new AfricasTalkingGateway(username, apiKey,"ONFON");
+        /*************************************************************************************
+            NOTE: If connecting to the sandbox:
+            1. Use "sandbox" as the username
+            2. Use the apiKey generated from your sandbox application
+                https://account.africastalking.com/apps/sandbox/settings/key
+            3. Add the "sandbox" flag to the constructor
+            AfricasTalkingGateway gateway = new AfricasTalkingGateway(username, apiKey, "sandbox");
+        **************************************************************************************/
+        // Thats it, hit send and we'll take care of the rest. Any errors will
+        // be captured in the Exception class below
         try {
-            JSONArray results = gateway.sendMessage(recipients, message, from);
-            
+            JSONArray results = gateway.sendMessage(recipients, message);
             for( int i = 0; i < results.length(); ++i ) {
-                  JSONObject result = results.getJSONObject(i);
-                  System.out.print(result.getString("status") + ",");
-                  System.out.print(result.getString("statusCode") + ",");
-                  System.out.print(result.getString("number") + ",");
-                  System.out.print(result.getString("messageId") + ",");
-                  System.out.println(result.getString("cost"));
+                JSONObject result = results.getJSONObject(i);
+                System.out.print(result.getString("status") + ","); // status is either "Success" or "error message"
+                System.out.print(result.getString("statusCode") + ",");
+                System.out.print(result.getString("number") + ",");
+                System.out.print(result.getString("messageId") + ",");
+                System.out.println(result.getString("cost"));
+            }
+        } catch (Exception e) {
+            System.out.println("Encountered an error while sending " + e.getMessage());
         }
-       }
-       
-       catch (Exception e) {
-        System.out.println("Encountered an error while sending " + e.getMessage());
-        }
-    
-   }
+    }
 }
