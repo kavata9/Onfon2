@@ -15,12 +15,12 @@ public class App {
     {
         // Specify your login credentials
         String username = "ONFON";
-        String apiKey   = "605865e1df37fe49954cc59748091f0e38b19a6c56dc49a1ef473c7441975cd9";
+        String apiKey   = "3cf18d1c5c5b070028ae89e225435286ebbdb8da0de4e9ef2114793521378a1c";
         // Specify the numbers that you want to send to in a comma-separated list
         // Please ensure you include the country code (+254 for Kenya in this case)
         String recipients = "+254724971796";
         // And of course we want our recipients to know what we really do
-        String message = "Welcome to our dating service sms the word MPENZI to 5001";
+        String message = "MPENZI";
         // Create a new instance of our awesome gateway class
         AfricasTalkingGateway gateway  = new AfricasTalkingGateway(username, apiKey,"ONFON");
         /*************************************************************************************
