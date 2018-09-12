@@ -2,11 +2,11 @@ import java.util.List;
 import java.util.ArrayList;
 import org.sql2o.*;
 
-public class onfon {
+public class Onfon {
   private String name;
   private int id;
 
-  public onfon(String name) {
+  public Onfon(String name) {
     this.name = name;
   }
 
@@ -14,10 +14,10 @@ public class onfon {
     return name;
   }
 
-  public static List<onfon> all() {
+  public static List<Onfon> all() {
     String sql = "SELECT id, name FROM onfon";
     try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql).executeAndFetch(onfon.class);
+      return con.createQuery(sql).executeAndFetch(Onfon.class);
     }
   }
 
@@ -25,12 +25,12 @@ public class onfon {
     return id;
   }
 
- public static onfon find(int id) {
+ public static Onfon find(int id) {
      try(Connection con = DB.sql2o.open()) {
        String sql = "SELECT * FROM onfon where id=:id";
-       onfon onfon = con.createQuery(sql)
+       Onfon onfon = con.createQuery(sql)
          .addParameter("id", id)
-         .executeAndFetchFirst(onfon.class);
+         .executeAndFetchFirst(Onfon.class);
        return onfon;
      }
    }
