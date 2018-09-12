@@ -12,18 +12,12 @@
  *OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                                                       *
  **********************************************************************************************************************/
 
-
 import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.Map.Entry;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-
-// import org.json.*;
+import org.json.*;
 
 public class AfricasTalkingGateway
 {
@@ -187,7 +181,7 @@ public class AfricasTalkingGateway
     	String response = sendGETRequest(requestUrl);
     	if(responseCode == HTTP_CODE_OK) {
 	    JSONObject jsObject = new JSONObject(response);
- 	    return jsObject.getJSONArray("responses");
+	    return jsObject.getJSONArray("responses");
     	}
     	
     	throw new Exception(response.toString());
